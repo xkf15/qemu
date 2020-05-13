@@ -2,8 +2,7 @@ Notes about Timing
 ========
 qemu/util/qemu-timer.c has function qemu_clock_get_ns(). Calling structure:
 
-.. code-block:: c
-  qemu_clock_get_ns() -> 
+qemu_clock_get_ns() -> 
 	cpu_get_icount() ->
 		cpu_get_icount_locked() ->
 			atomic_read_i64(&timers_state.qemu_icount)
