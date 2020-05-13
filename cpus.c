@@ -218,6 +218,8 @@ static int64_t cpu_get_icount_raw_locked(void)
         cpu_update_icount_locked(cpu);
     }
     /* The read is protected by the seqlock, but needs atomic64 to avoid UB */
+
+    /* Marked by Kaifeng Xu, May need to change the qemu_icount */
     return atomic_read_i64(&timers_state.qemu_icount);
 }
 

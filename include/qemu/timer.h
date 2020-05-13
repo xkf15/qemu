@@ -816,6 +816,10 @@ static inline int64_t get_clock_realtime(void)
     struct timeval tv;
 
     gettimeofday(&tv, NULL);
+
+    /* Marked by Kaifeng Xu 
+     * gettimeofday is the system call
+     * May need to change the return value here */
     return tv.tv_sec * 1000000000LL + (tv.tv_usec * 1000);
 }
 
@@ -840,6 +844,10 @@ static inline int64_t get_clock(void)
 {
     if (use_rt_clock) {
         struct timespec ts;
+
+	/* Marked by Kaifeng Xu 
+	 * clock_gettime is the system call
+	 * may need to modify this return value */
         clock_gettime(CLOCK_MONOTONIC, &ts);
         return ts.tv_sec * 1000000000LL + ts.tv_nsec;
     } else {
