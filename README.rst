@@ -2,8 +2,8 @@ Notes about Timing
 ========
 qemu/util/qemu-timer.c has function qemu_clock_get_ns(). Calling structure:
 
-```
-qemu_clock_get_ns() -> 
+.. code-block:: c
+  qemu_clock_get_ns() -> 
 	cpu_get_icount() ->
 		cpu_get_icount_locked() ->
 			atomic_read_i64(&timers_state.qemu_icount)
@@ -12,7 +12,6 @@ qemu_clock_get_ns() ->
 			get_clock() ->
 				clock_gettime(CLOCK_MONOTONIC, &ts)
 				or get_clock_realtime() -> gettimeofday
-```
 
 clock_gettime and gettimeofday are system calls that get the host time.
 
